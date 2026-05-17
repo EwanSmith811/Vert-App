@@ -170,10 +170,12 @@ export default function VertApp() {
         .nav-btn { background: transparent; border: none; color: #444; font-size: 11px; letter-spacing: 0.15em; padding: 8px 16px; text-transform: uppercase; transition: color 0.2s; border-bottom: 2px solid transparent; }
         .nav-btn:hover { color: #888; }
         .nav-btn.active { color: #e8e0d5; border-bottom-color: #e8e0d5; }
-        .program-layout { display: flex; min-height: calc(100dvh - 45px); }
-        .phase-sidebar { width: 180px; border-right: 1px solid #111; flex-shrink: 0; display: flex; flex-direction: column; }
+        .program-layout { display: flex; min-height: calc(100dvh - 45px); align-items: stretch; }
+        .phase-sidebar { width: 220px; border-right: 1px solid #111; flex-shrink: 0; display: flex; flex-direction: column; }
         .sidebar-schedule { margin-top: auto; border-top: 1px solid #111; padding: 12px 14px; }
-        .main-pane { flex: 1; overflow-y: auto; min-width: 0; max-width: 760px; }
+        .main-pane { flex: 1; overflow-y: auto; min-width: 0; width: 100%; }
+        .main-content { width: min(1180px, 100%); margin: 0 auto; }
+        .progress-view { width: min(1180px, 100%); margin: 0 auto; }
         .session-tabs { display: flex; margin-top: 4px; }
         .exercise-grid { display: grid; grid-template-columns: 22px 1fr 56px 70px 90px 100px; gap: 8px; align-items: center; padding: 11px 0; }
         .exercise-grid > * { min-width: 0; }
@@ -212,6 +214,7 @@ export default function VertApp() {
           .phase-sidebar .phase-btn { min-width: 170px; width: auto; flex-shrink: 0; border-right: 1px solid #111; border-left: none; border-bottom: none; display: inline-flex; flex-direction: column; }
           .sidebar-schedule { display: none; }
           .main-pane { max-width: none; }
+          .main-content, .progress-view { width: 100%; margin: 0; }
         }
         @media (max-width: 720px) {
           .top-nav { padding: 10px 10px 8px; }
@@ -308,6 +311,7 @@ export default function VertApp() {
 
             {/* Main */}
             <div className="main-pane">
+              <div className="main-content">
 
               {/* Phase header */}
               <div style={{ padding: "20px 24px 0", borderBottom: "1px solid #111" }}>
@@ -464,12 +468,13 @@ export default function VertApp() {
                 <div style={{ fontSize: 9, letterSpacing: "0.15em", color: phaseColor, marginBottom: 5 }}>SCIENCE NOTE</div>
                 <div style={{ fontSize: 11, color: "#666", lineHeight: 1.7, fontStyle: "italic" }}>{phase.scienceNote}</div>
               </div>
+              </div>
             </div>
           </div>
         )}
 
         {view === "progress" && (
-          <div style={{ maxWidth: 700, margin: "0 auto", padding: "24px 24px" }}>
+          <div className="progress-view" style={{ padding: "24px 24px" }}>
             <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 22, letterSpacing: "0.1em", marginBottom: 4 }}>PROGRESS LOG</div>
             <div style={{ fontSize: 11, color: "#555", marginBottom: 24 }}>All logged sessions across the program.</div>
 
